@@ -119,13 +119,11 @@ public class LineListener {
   public void onJoinEvent(@NotNull JoinEvent event) {
     checkArgument(event.getSource() instanceof GroupSource);
     var groupID = ((GroupSource) event.getSource()).getGroupId();
-    log.info("Joined group: {} ({} members)",
-        messagingClient.getGroupSummary(groupID).join().getGroupName(),
-        messagingClient.getGroupMemberCount(groupID).join().getCount());
+    log.info("Joined group: {}", groupID);
     messagingClient.replyMessage(new ReplyMessage(event.getReplyToken(),
-        new TextMessage("このグループのIDは %s です。".formatted(groupID))));
-    // leave group to prevent webhooks
-    messagingClient.leaveGroup(groupID);
+            new TextMessage("このグループのIDは %s です。".formatted(groupID))))
+        // leave group to prevent webhooks
+        .whenComplete((res, err) -> messagingClient.leaveGroup(groupID));
   }
 
   @EventMapping
