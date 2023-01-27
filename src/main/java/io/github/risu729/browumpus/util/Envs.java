@@ -7,7 +7,7 @@
  *
  */
 
-package io.github.risu729.browumpus;
+package io.github.risu729.browumpus.util;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -17,7 +17,7 @@ import java.util.Map;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 // wrap env variables to keep it consistent during runtime and for null checking
-final class Envs {
+public final class Envs {
 
   private static final Map<String, String> ENV = System.getenv();
 
@@ -27,7 +27,7 @@ final class Envs {
   }
 
   @Contract(pure = true)
-  static @NotNull String getEnv(@NotNull String key) {
+  public static @NotNull String getEnv(@NotNull String key) {
     return checkNotNull(ENV.get(key));
   }
 }

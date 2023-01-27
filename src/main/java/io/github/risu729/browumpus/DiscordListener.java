@@ -8,6 +8,7 @@
 
 package io.github.risu729.browumpus;
 
+import io.github.risu729.browumpus.util.Envs;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;

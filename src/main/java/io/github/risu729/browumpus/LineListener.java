@@ -33,6 +33,7 @@ import com.linecorp.bot.model.request.SetWebhookEndpointRequest;
 import com.linecorp.bot.model.response.GetWebhookEndpointResponse;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
+import io.github.risu729.browumpus.util.Envs;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
