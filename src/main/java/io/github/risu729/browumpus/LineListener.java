@@ -99,7 +99,7 @@ public class LineListener {
 
     messagingClient.setWebhookEndpoint(SetWebhookEndpointRequest.builder()
         .endpoint(endpoint)
-        .build()).join();
+        .build());
   }
 
   @SuppressWarnings("rawtypes")
