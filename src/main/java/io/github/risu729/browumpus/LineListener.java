@@ -90,7 +90,7 @@ public class LineListener {
       throw new IllegalStateException("Webhook of LINE bot is not active");
     }
 
-    var endpoint = URI.create(Envs.getEnv("RAILWAY_URL") + endpointPath);
+    var endpoint = URI.create(Envs.getEnv("RAILWAY_STATIC_URL") + endpointPath);
 
     // skip if the endpoint is already set
     if (Objects.equals(endpoint, getResponse.orElseThrow().getEndpoint())) {
