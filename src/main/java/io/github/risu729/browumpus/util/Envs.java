@@ -12,22 +12,19 @@ package io.github.risu729.browumpus.util;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Map;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
-// wrap env variables to keep it consistent during runtime and for null checking
+// wrap env variables for null checking
 public final class Envs {
-
-  private static final Map<String, String> ENV = System.getenv();
 
   @Contract(" -> fail")
   private Envs() {
     throw new AssertionError();
   }
 
+  @SuppressWarnings("CallToSystemGetenv")
   @Contract(pure = true)
   public static @NotNull String getEnv(@NotNull String key) {
-    return checkNotNull(ENV.get(key));
+    return checkNotNull(System.getenv(key));
   }
 }
