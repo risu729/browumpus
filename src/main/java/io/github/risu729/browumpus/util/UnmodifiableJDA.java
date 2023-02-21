@@ -16,6 +16,7 @@ import net.dv8tion.jda.api.entities.ApplicationInfo;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Icon;
 import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.entities.RoleConnectionMetadata;
 import net.dv8tion.jda.api.entities.ScheduledEvent;
 import net.dv8tion.jda.api.entities.SelfUser;
 import net.dv8tion.jda.api.entities.User;
@@ -60,6 +61,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings("OverloadedVarargsMethod")
 public final class UnmodifiableJDA implements JDA {
@@ -106,6 +108,12 @@ public final class UnmodifiableJDA implements JDA {
   @Nonnull
   public JDA awaitStatus(@NotNull JDA.Status status, @NotNull Status @NotNull ... failOn) {
     throw new UnsupportedOperationException();
+  }
+
+  // supported for bean destroy
+  @Override
+  public boolean awaitShutdown(long duration, @NotNull TimeUnit unit) throws InterruptedException {
+    return jda.awaitShutdown(duration, unit);
   }
 
   @Override
@@ -199,6 +207,19 @@ public final class UnmodifiableJDA implements JDA {
   @Nonnull
   public RestAction<Void> deleteCommandById(@NotNull String commandId) {
     throw new UnsupportedOperationException();
+  }
+
+  @NotNull
+  @Override
+  public RestAction<List<RoleConnectionMetadata>> retrieveRoleConnectionMetadata() {
+    return jda.retrieveRoleConnectionMetadata();
+  }
+
+  @NotNull
+  @Override
+  public RestAction<List<RoleConnectionMetadata>> updateRoleConnectionMetadata(
+      @NotNull Collection<? extends RoleConnectionMetadata> records) {
+    return jda.updateRoleConnectionMetadata(records);
   }
 
   @Override
