@@ -121,6 +121,9 @@ public class LineListener {
     checkArgument(event.getSource() instanceof GroupSource);
     var groupID = ((GroupSource) event.getSource()).getGroupId();
     log.info("Joined group: {}", groupID);
+    if (Envs.getEnv("LINE_GROUP_ID").equals(groupID)) {
+      return;
+    }
     messagingClient.replyMessage(new ReplyMessage(event.getReplyToken(),
             new TextMessage("このグループのIDは %s です。".formatted(groupID))))
         // leave group to prevent webhooks
